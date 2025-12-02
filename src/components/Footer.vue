@@ -5,6 +5,10 @@
 </template>
 
 <style scoped>
+  .footer {
+    border-top: 1px solid gray;
+  }
+
   .footer__text {
     text-align: right;
   }
