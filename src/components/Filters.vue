@@ -1,13 +1,25 @@
 <script setup>
     import filters from '../assets/brands.json';
+    import { useFiltersStore } from '../store/filters';
+
+    const store = useFiltersStore();
+
+    function setFilters(filter) {
+      const index = store.filters.findIndex((value) => value === filter);
+      if (index === -1) {
+        store.addFilter(filter);
+      } else {
+        store.removeFilter(index);
+      }
+    }
 </script>
 
 <template>
     <aside class="filters">
       <h3 class="filters__title">All Brands</h3>
       <form class="filters__form">
-        <label v-for="filter in filters" :id="filter.id" class="filters__label">
-          <input type="checkbox" :name="filter.code" class="filters__input">
+        <label v-for="filter in filters" :id="filter.id" :key="filter.id" class="filters__label">
+          <input type="checkbox" :name="filter.code" class="filters__input" @click.stop="setFilters(filter.code)">
           <span class="filters__text">{{ filter.title }}</span>
         </label>
       </form>
@@ -16,6 +28,7 @@
 
 <style scoped>
   .filters {
+    min-width: 150px;
     border-right: 1px solid gray;
     margin-right: 60px;
     padding-right: 30px;
