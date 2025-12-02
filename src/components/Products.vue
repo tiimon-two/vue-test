@@ -1,11 +1,19 @@
 <script setup>
   import products from '../assets/products.json';
+  import { useFiltersStore } from '../store/filters';
+  import { computed } from 'vue'
+
+  const store = useFiltersStore();
+
+  const currentFilters = computed(() => {
+    return store.filters.length ? products.filter((product) => store.filters.includes(`brand_${product.brand}`)) : products;
+  })
 </script>
 
 <template>
   <div class="products">
     <ul class="products__list">
-      <li class="products__item" v-for="product in products" :key="product.id">
+      <li class="products__item" v-for="product in currentFilters" :key="product.id">
         <img :src="`src/assets/${ product.image }`" class="products__image" width="190" height="190" :alt="product.title"/>
         <p class="products__title">{{ product.title }}</p>
         <p class="products__brand">Brand {{ product.brand }}</p>
@@ -19,16 +27,16 @@
 <style scoped>
   .products__list {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     list-style: none;
-    row-gap: 20px;
+    gap: 20px;
+    width: 100%;
   }
 
   .products__item {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 190px;
     padding: 10px;
     border: 1px solid black;
   }
