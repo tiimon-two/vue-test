@@ -35,6 +35,10 @@
     cursor: pointer;
   }
 
+  .filters__label:hover {
+    text-shadow: 1px 0 0 black;
+  }
+
   .filters__input {
     display: none;
   }

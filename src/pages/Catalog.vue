@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Filters from '../components/Filters.vue';
-
+  import Filters from '../components/Filters.vue';
+import Products from '../components/Products.vue';
 </script>
 
 <template>
@@ -8,6 +8,7 @@ import Filters from '../components/Filters.vue';
         <Filters/>
         <main>
           <h2 class="catalog__title">Catalog</h2>
+          <Products/>
         </main>
     </section>
 </template>
