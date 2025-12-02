@@ -14,6 +14,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 10px 0 10px;
+    border-bottom: 1px solid gray;
   }
 
   .header__cart {
